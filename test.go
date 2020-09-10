@@ -1,8 +1,14 @@
-package text
+package main
 
 import (
+	"fmt"
 	"github.com/rivo/uniseg"
 )
+
+func main() {
+	t := Truncate(11, "aテストテストテストテスト")
+	fmt.Printf("%v\n", t)
+}
 
 // DisplayWidth calculates what the rendered width of a string may be
 func DisplayWidth(s string) int {
@@ -17,6 +23,7 @@ const (
 // Truncate shortens a string to fit the maximum display width
 func Truncate(max int, s string) string {
 	w := DisplayWidth(s)
+	fmt.Printf("%v\n", w)
 	if w <= max {
 		return s
 	}
@@ -32,6 +39,7 @@ func Truncate(max int, s string) string {
 	for i := 0; i <= max; i++ {
 		gr.Next()
 		res += gr.Str()
+		fmt.Printf("%v\n", res)
 	}
 
 	if useEllipsis {
